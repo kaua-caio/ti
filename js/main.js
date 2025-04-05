@@ -1,15 +1,29 @@
-// Função para trocar as frases motivacionais
-let currentSlide = 0;
-const slides = document.querySelectorAll('.slide');
+document.addEventListener("DOMContentLoaded", function() {
+    // Duplica as frases para efeito contínuo
+    const sliderTrack = document.querySelector('.slider-track');
+    const slides = document.querySelectorAll('.slide');
+    
+    slides.forEach(slide => {
+        const clone = slide.cloneNode(true);
+        sliderTrack.appendChild(clone);
+    });
+    
+    // Botão Ajuda
+    const btnHelp = document.querySelector('.btn-help');
+    btnHelp.addEventListener('click', function() {
+        window.open('https://mail.google.com/chat/u/0/#chat/home', '_blank');
+    });
+    
+    // Suaviza o carregamento
+    document.body.style.opacity = '1';
+});
 
-function showNextSlide() {
-    slides[currentSlide].classList.remove('active');
-    currentSlide = (currentSlide + 1) % slides.length;
-    slides[currentSlide].classList.add('active');
+// Mantém todas as funções originais
+function abrirTask() {
+    window.open('https://forms.clickup.com/9011833817/f/8cjbayt-7791/8LVM6MSRGMTA3SCR8N', '_blank');
 }
 
-setInterval(showNextSlide, 5000);
-slides[0].classList.add('active');
+// ... outras funções permanecem iguais ...
 
 // Função para redirecionar ao clicar no botão "Abrir Task"
 function abrirTask() {
