@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tela 2 - Cadastro e Planos</title>
+  <style>
+    /* Base */
+    :root {
+        --primary: #2ecc71;
+        --primary-dark: #27ae60;
+        --text: #2c3e50;
+        --light-bg: #f8f9fa;
+        --border: #ecf0f1;
+        --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+        background-color: #f5f7fa;
+        color: var(--text);
+        line-height: 1.6;
+    }
+
+    .container {
+        max-width: 600px;
+        margin: 3rem auto;
+        background: white;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        box-shadow: var(--shadow);
+        padding: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-bottom: 1.5rem;
+        text-align: center;
+        color: var(--text);
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    label {
+        font-weight: 500;
+        margin-bottom: 0.25rem;
+        display: block;
+    }
+
+    input, select {
+        padding: 0.6rem 0.8rem;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        font-size: 0.95rem;
+        background-color: var(--light-bg);
+        transition: border-color 0.3s ease;
+        width: 100%;
+    }
+
+    input:focus, select:focus {
+        outline: none;
+        border-color: var(--primary);
+        box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
+    }
+
+    button {
+        background-color: var(--primary);
+        color: white;
+        border: none;
+        padding: 0.75rem;
+        border-radius: 16px;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+        background-color: var(--primary-dark);
+    }
+
+    .planos {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+
+    .plano {
+        padding: 1rem;
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        background-color: var(--light-bg);
+        cursor: pointer;
+        transition: border-color 0.3s ease;
+    }
+
+    .plano:hover {
+        border-color: var(--primary);
+    }
+
+    .plano.selected {
+        border-color: var(--primary);
+        background-color: #eafaf1;
+    }
+
+    .message {
+        margin-top: 1rem;
+        padding: 0.75rem;
+        border-radius: 12px;
+        background-color: #eafaf1;
+        color: var(--primary-dark);
+        font-weight: 500;
+        display: none;
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Cadastro e Planos</h2>
+    <form id="cadastroForm">
+      <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome" name="nome" required />
+      </div>
+      <div>
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email" required />
+      </div>
+      <div>
+        <label for="senha">Senha:</label>
+        <input type="password" id="senha" name="senha" required />
+      </div>
+      <div class="planos">
+        <div class="plano" data-plano="Básico">Plano Básico - Gratuito</div>
+        <div class="plano" data-plano="Intermediário">Plano Intermediário - R$19,90/mês</div>
+        <div class="plano" data-plano="Avançado">Plano Avançado - R$39,90/mês</div>
+      </div>
+      <input type="hidden" name="plano" id="planoSelecionado" required />
+      <button type="submit">Cadastrar</button>
+    </form>
+    <div class="message" id="mensagemSucesso">Cadastro realizado com sucesso!</div>
+  </div>
+
+  <script>
+    const planos = document.querySelectorAll('.plano');
+    const planoInput = document.getElementById('planoSelecionado');
+    const form = document.getElementById('cadastroForm');
+    const mensagem = document.getElementById('mensagemSucesso');
+
+    planos.forEach(plano => {
+      plano.addEventListener('click', () => {
+        planos.forEach(p => p.classList.remove('selected'));
+        plano.classList.add('selected');
+        planoInput.value = plano.dataset.plano;
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      if (!planoInput.value) {
+        alert("Selecione um plano.");
+        return;
+      }
+      form.reset();
+      planos.forEach(p => p.classList.remove('selected'));
+      planoInput.value = '';
+      mensagem.style.display = 'block';
+      setTimeout(() => {
+        mensagem.style.display = 'none';
+      }, 3000);
+    });
+  </script>
+</body>
+</html>

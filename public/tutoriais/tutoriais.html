@@ -1,61 +1,103 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tutoriais</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link rel="icon" type="imagem/png" href="assets/loginLogo.png">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tutoriais Greenn</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <!-- Logo "Tutoriais" -->
-    <header>
-        <h1 class="logo">Tutoriais</h1>
-    </header>
-
-    <!-- Cards com Vídeos -->
-    <section id="tutoriais-cards">
-        <!-- Card 1 -->
-        <div class="card">
-            <div class="video-container">
-                <img src="assets/redefinirsenha.png" alt="Capa do Tutorial 1" class="capa">
-                <button class="play-btn" onclick="abrirVideo('tutorial1')">&#9658;</button>
-            </div>
-            <h3>Redefinição de senhas </h3>
+  <header>
+    <div class="header-container">
+      <div class="logo-container">
+        <div class="media-icon">
+          <div class="cursor" id="cursor"></div>
+          <div class="pause-icon" id="pauseIcon"></div>
+          <div class="play-icon" id="playIcon"></div>
         </div>
-
-        <!-- Card 2 -->
-        <div class="card">
-            <div class="video-container">
-                <img src="assets/multjump.png" alt="Capa do Tutorial 2" class="capa">
-                <button class="play-btn" onclick="abrirVideo('tutorial2')">&#9658;</button>
-            </div>
-            <h3>MFA Jumpcloud </h3>
+        <div class="title" id="title"><span>TUTORIAIS</span> GREENN</div>
+      </div>
+      
+      <div class="header-right">
+        <div class="search-section">
+          <input type="text" id="search" placeholder="Pesquisar..." aria-label="Campo de pesquisa">
         </div>
-
-        <!-- Card 3 -->
-        <div class="card">
-            <div class="video-container">
-                <img src="assets/multgoogle.png" alt="Capa do Tutorial 3" class="capa">
-                <button class="play-btn" onclick="abrirVideo('tutorial3')">&#9658;</button>
-            </div>
-            <h3>MFA Google</h3>
-        </div>
-
-       
-    <!-- Modal para exibir o vídeo -->
-    <div id="video-modal" class="modal">
-        <div class="modal-content">
-            <span class="close" onclick="fecharVideo()">&times;</span>
-            <video controls id="video-player">
-                <source src="" type="video/mp4">
-                Seu navegador não suporta o elemento de vídeo.
-            </video>
-            <button class="close-btn" onclick="fecharVideo()">Fechar</button>
-        </div>
+        
+        <button id="toggleFiltros">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          Filtros
+        </button>
+      </div>
     </div>
+    
+    <div class="tags-ativas" id="tagsAtivas">
+      <!-- Tags aparecerão aqui dinamicamente -->
+    </div>
+  </header>
 
-    <script src="js/main.js"></script>
+  <div id="modalFiltros" class="modal-filtros">
+    <div class="filtros-conteudo">
+      <h2>Filtrar por categoria</h2>
+      
+      <div class="filtro-option">
+        <input type="checkbox" id="filtro-todos" checked onclick="filtrarPorTag('todos')">
+        <label for="filtro-todos">Todos</label>
+      </div>
+      
+      <div class="filtro-option">
+        <input type="checkbox" id="filtro-seguranca" onclick="filtrarPorTag('seguranca')">
+        <label for="filtro-seguranca">Segurança</label>
+      </div>
+      
+      <div class="filtro-option">
+        <input type="checkbox" id="filtro-colaborador" onclick="filtrarPorTag('colaborador')">
+        <label for="filtro-colaborador">Colaborador</label>
+      </div>
+      
+      <div class="filtro-option">
+        <input type="checkbox" id="filtro-etica" onclick="filtrarPorTag('etica')">
+        <label for="filtro-etica">Ética</label>
+      </div>
+      
+      <button id="fecharFiltros">Aplicar Filtros</button>
+    </div>
+  </div>
+
+  <main>
+    <section id="tutoriais-cards">
+      <div class="card" data-tags="seguranca" onclick="abrirVideo('assets/tutorial1.mp4')">
+        <img src="assets/redefinirsenha.png" alt="Política de Segurança">
+        <h3>Redefinição de Senha</h3>
+        <p>Processo de redefinição de senhas Jumpcloud</p>
+        <span class="tag">#segurança</span>
+        <div class="pdf-button">ABRIR</div>
+      </div>
+
+      <div class="card" data-tags="seguranca" onclick="abrirVideo('assets/tutorial2.mp4')">
+        <img src="assets/multjump.png" alt="Manual do Colaborador">
+        <h3>MFAjumpcloud</h3>
+        <p>Multifator Jumpcloud</p>
+        <span class="tag"><div id="segurança"></div>#segurança</span>
+        <div class="pdf-button">ABRIR</div>
+      </div>
+
+      <div class="card" data-tags="seguranca" onclick="abrirVideo('assets/tutorial3.mp4')">
+        <img src="assets/multgoogle.png" alt="">
+        <h3>MFA Google</h3>
+        <p>Multifator do google.</p>
+        <span class="tag">#segurança</span>
+        <div class="pdf-button"> ABRIR </div>
+      </div>
+    </section>
+  </main>
+
+  <div class="video-modal" id="videoModal">
+    <video id="videoPlayer" controls></video>
+    <button class="close-btn" onclick="fecharVideo()" aria-label="Fechar vídeo">×</button>
+  </div>
+
+  <script src="js/main.js"></script>
 </body>
 </html>
