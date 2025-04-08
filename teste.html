@@ -1,161 +1,512 @@
-/* Estilos Globais */
-body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #f8f8f8;
-    color: #333;
-    line-height: 1.6;
-    letter-spacing: 0.5px;
+/* Reset e Variáveis */
+:root {
+    --neon-green: #00ff88;
+    --neon-blue: #00d1ff;
+    --light-bg: #f8fafc;
+    --text-dark: #1e293b;
+    --text-light: #64748b;
 }
 
-/* Logo "Manual do Colaborador" */
-header {
-    text-align: center;
-    padding: 40px 20px;
-    margin-bottom: 30px;
+html, body {
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: white;
+    color: #333;
+    line-height: 1.6;
+}
+
+/* Header */
+.full-width-header {
+    margin-bottom: 0.5rem;
+    height: auto;
+}
+
+.header-wrapper {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.0rem;
+    max-width: 1800px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.logo-container {
+    text-align: left;
+    flex: 1 1 200px;
 }
 
 .logo {
-    font-size: 2.5em;
-    font-weight: 600;
-    margin: 0;
-    color: #000;
-    text-shadow: 1px 1px 2px rgba(0, 198, 255, 0.1); /* Sombra neon sutil */
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--text-dark);
 }
 
-/* Cards do Manual */
-#manual-cards {
+.logo span {
+    color: var(--neon-blue);
+}
+
+.subtitle {
+    font-size: 1.0rem;
+    color: var(--text-light);
+}
+
+.btn-help {
+    background: transparent;
+    color: var(--neon-green);
+    border: 2px solid var(--neon-green);
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    flex: 0 1 auto;
+}
+
+.btn-help:hover {
+    background: rgba(0, 255, 136, 0.1);
+}
+
+.neon-line {
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--neon-green) 30%, var(--neon-blue) 70%, transparent 100%);
+    margin: 0.25rem 1rem;
+    width: 100%;
+    opacity: 0.7;
+    
+}
+
+#mensagem {
+    text-align: center;
+    padding: 2rem;
+    font-size: 1.2rem;
+    color: #555;
+    margin: 2rem 0;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* Slider */
+.full-width-slider {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 2rem 0;
+    overflow: hidden;
+    background: rgba(248, 250, 252, 0.5);
+    .slider-track {
+    display: flex;
+    gap: 5rem; /* Ajuste este valor para aumentar ou diminuir o espaçamento entre os slides */
+    animation: scroll 25s linear infinite;
+    width: max-content;
+    padding: 1rem 0;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.full-width-slider {
+    padding: 0.6rem 0; /* Antes era 2rem 0 */
+    background: rgba(248, 250, 252, 0.5);
+}
+
+.slide-item {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    margin-right: 0.5rem; /* Ajuste este valor para diminuir o espaçamento entre os itens */
+}
+}
+
+.slider-line {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        var(--neon-green) 25%, 
+        var(--neon-blue) 50%,
+        var(--neon-green) 75%, 
+        transparent 100%);
+    background-size: 200% 100%;
+    animation: lineFlow 6s linear infinite;
+}
+
+.slider-line.top {
+    top: 0;
+}
+
+.slider-line.bottom {
+    bottom: 0;
+}
+
+.slider-content {
+    max-width: 100%;
+    margin: 0 auto;
+    padding: 0 1rem;
+    text-align: center;
+}
+
+.slider-track {
+    display: flex;
+    gap: 4rem; /* Ajuste este valor para aumentar ou diminuir o espaçamento entre os slides */
+    animation: scroll 10s linear infinite;
+    width: max-content;
+    padding: 1rem 2rem;
+    padding-top: 10px;
+}
+
+.slide-item {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    margin-right: 5rem; /* Ajuste este valor para diminuir o espaçamento entre os itens */
+}
+.slide-item::before {
+    content: '•';
+    color: var(--neon-blue);
+    font-size: 1.3rem; /* Reduzido o tamanho da fonte */
+    margin-right: 0.6rem; /* Reduzido a margem */
+    animation: pulseDot 2s infinite ease-in-out;
+}
+
+/* Animação do Slider */
+@keyframes scroll {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(calc(-100% + var(--gap))); } /* Ajuste para o gap */
+}
+
+.slider-track {
+    --gap: 1rem; /* Defina o gap como uma variável */
+    display: flex;
+    gap: var(--gap);
+    animation: scroll 25s linear infinite;
+    width: max-content;
+    padding: 1rem 0;
+}
+
+/* Botões Principais */
+#botoes {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
-    margin: 40px; /* Aumentei a margem para espaçamento externo */
+    gap: 1.5rem;
+    padding: 2rem;
+    margin: 2rem 0;
 }
 
-#manual-cards .card {
-    background: #fff;
+.btn {
+    background: linear-gradient(45deg, #007AFF, #00D1FF);
+    color: white;
+    border: none;
+    padding: 1rem 1.5rem;
     border-radius: 8px;
-    padding: 27px;
-    width: 280px;
-    text-align: left;
-    margin: 80px; /* Aumentei a margem para espaçamento entre os cards */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-    transition: transform 0.3s ease;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    width: 180px;
+    text-align: center;
 }
 
-#manual-cards .card:hover {
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+/* Mensagem e Cards */
+#msg-cards {
+    text-align: center;
+    padding: 1.5rem;
+    font-size: 1.1rem;
+    margin: 2rem 0;
+}
+
+#msg-cards a {
+    color: #007AFF;
+    text-decoration: none;
+}
+
+#msg-cards a:hover {
+    color: #00D1FF;
+}
+
+#cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    padding: 5rem;
+    margin: 2rem 0;
+}
+
+.card {
+    background-color: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 1.5rem;
+    text-align: center;
+    width: 90%;
+    max-width: 300px;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+}
+
+.card img {
+    border-radius: 50%;
+    width: 100px;
+    height: 100px;
+    margin-bottom: 1rem;
+    object-fit: cover;
+}
+
+.card h3 {
+    font-size: 1.1rem;
+    margin-bottom: 0.8rem;
+}
+
+.card p {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Novidades */
+#novidades {
+    text-align: center;
+    padding: 2rem 1rem;
+    margin: 2rem 0;
+}
+
+.novidades-content h2 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.texto-reservado {
+    font-size: 0.8rem;
+    color: #888;
+    margin-top: 1.5rem;
+}
+
+/* Modal */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-conteudo {
+    background: white;
+    padding: 2rem;
+    border-radius: 12px;
+    max-width: 90%;
+    width: auto;
+    text-align: center;
+    position: relative;
+}
+
+.fechar {
+    position: absolute;
+    top: 1rem;
+    right: 1.5rem;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
+
+.app-list {
+    list-style: none;
+    padding: 0;
+    margin: 1.5rem 0 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.app-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    min-width: 100px;
+}
+
+.app-item:hover {
     transform: translateY(-5px);
 }
 
-#manual-cards .card img {
-    width: 100%;
-    margin-bottom: 20px;
-    border-bottom: 1px solid #98fb98;
+.app-item img {
+    width: 40px;
+    height: 40px;
+    margin-bottom: 0.8rem;
 }
 
-#manual-cards .card h3 {
-    color: #000;
-    margin: 0 0 15px 0;
-    font-size: 1.4em;
-    font-weight: 600;
-}
-
-#manual-cards .card p {
-    color: #444;
-    font-size: 1em;
-}
-
-#manual-cards .card button {
-    background: linear-gradient(135deg, #00c6ff, #98fb98);
-    border: none;
-    color: #fff;
-    padding: 12px 25px;
-    font-size: 1em;
-    font-weight: 500;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background 0.3s ease;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-}
-
-#manual-cards .card button:hover {
-    background: linear-gradient(135deg, #0099cc, #66cd66);
-}
-
-/* Detalhes Neon */
-#manual-cards .card h3::after {
-    content: '';
-    display: block;
-    width: 25px;
-    height: 1px;
-    background: linear-gradient(to right, #00c6ff, #98fb98);
-    margin-top: 10px;
+.app-item span {
+    font-size: 0.9rem;
 }
 
 /* Responsividade */
 @media (max-width: 768px) {
-    .logo {
-        font-size: 2em;
+    .header-wrapper {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 1rem;
+        padding: 1rem;
     }
-
-    #manual-cards .card {
+    
+    .btn-help {
+        align-self: center;
+        order: 1;
         width: 100%;
-        margin: 20px 0;
-        padding: 25px;
+        margin-top: 1rem;
+        font-size: 0.8rem; /* Reduzindo o tamanho da fonte do botão */
+        padding: 0.5rem 1rem; /* Reduzindo o padding do botão */
+    }
+    
+    #botoes {
+        gap: 1rem;
+        padding: 1.5rem;
+    }
+    
+    #cards {
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+    
+    .modal-conteudo {
+        padding: 1.5rem;
+    }
+    
+    .app-list {
+        gap: 1rem;
     }
 }
 
-
-
-
-
-
-////////////////////////////
-
-// Função para abrir PDFs
-function abrirPdf(pdf) {
-    window.open(pdf, '_blank');
+/* SLIDER AJUSTADO */
+.full-width-slider {
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    padding: 2rem 0;
+    overflow: hidden;
+    background: rgba(248, 250, 252, 0.5);
 }
 
-///////////////////////////////
+.slider-track {
+    display: flex;
+    gap: 4rem;
+    animation: scroll 60s linear infinite; /* mais lento e contínuo */
+    width: max-content;
+    padding: 1rem 2rem;
+}
 
-<!DOCTYPE html>
-<html lang="pt-BR">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Manual do Colaborador</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@600&display=swap" rel="stylesheet">
-</head>
-<body>
-    <!-- Logo "Manual do Colaborador" -->
-    <header>
-        <h1 class="logo">Manual do Colaborador</h1>
-    </header>
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
 
-    <!-- Cards com Botões e Imagens -->
-    <section id="manual-cards">
-        <div class="card">
-            <img src="assets/ps.png" alt="Manual 1">
-            <h3>Política de Segurança</h3>
-            <button onclick="abrirPdf('pdfs/politica_de_seguranca.pdf')">Abrir PDF</button>
-        </div>
-        <div class="card">
-            <img src="assets/mc.png" alt="Manual 2">
-            <h3>Manual do Colaborador 11/10/2024</h3>
-            <button onclick="abrirPdf('pdfs/ManualdoColaborador.pdf')">Abrir PDF</button>
-        </div>
-        <div class="card">
-            <img src="assets/cd.png" alt="Manual 3">
-            <h3>Código de Conduta e Ética 11/10/2024</h3>
-            <button onclick="abrirPdf('pdfs/CodigodeConduta.pdf')">Abrir PDF</button>
-        </div>
-        
-    </section>
+.slide-item {
+    font-size: 1rem;
+    font-weight: 500;
+    color: var(--text-dark);
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+    margin-right: 3rem;
+}
 
-    <script src="js/main.js"></script>
-</body>
-</html>
+.slide-item::before {
+    content: '•';
+    color: var(--neon-blue);
+    font-size: 1.3rem;
+    margin-right: 0.6rem;
+    animation: pulseDot 2s infinite ease-in-out;
+}
+
+/* RESPONSIVIDADE APRIMORADA */
+@media (max-width: 768px) {
+    .header-wrapper {
+        flex-direction: column;
+        align-items: center;
+        gap: 0.5rem;
+        text-align: center;
+    }
+
+    .logo-container {
+        flex: none;
+        width: 100%;
+    }
+
+    .logo {
+        font-size: 1.8rem;
+    }
+
+    .subtitle {
+        font-size: 0.9rem;
+    }
+
+    .btn-help {
+        width: 100%;
+        padding: 0.4rem 1rem;
+        font-size: 0.85rem;
+    }
+
+    .slider-track {
+        gap: 2rem;
+        padding: 1rem;
+        animation: scroll 50s linear infinite;
+    }
+
+    .slide-item {
+        font-size: 0.85rem;
+        margin-right: 2rem;
+    }
+
+    #cards {
+        padding: 2rem 1rem;
+    }
+
+    .card {
+        width: 100%;
+        max-width: none;
+    }
+
+    #botoes {
+        padding: 1rem;
+        gap: 1rem;
+    }
+}
+

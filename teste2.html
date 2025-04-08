@@ -1,185 +1,218 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Tela 2 - Cadastro e Planos</title>
-  <style>
-    /* Base */
-    :root {
-        --primary: #2ecc71;
-        --primary-dark: #27ae60;
-        --text: #2c3e50;
-        --light-bg: #f8f9fa;
-        --border: #ecf0f1;
-        --shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-    }
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tutoriais | Green TI</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bg-dark: #0f1117;
+        --card-bg: #161a23;
+        --green-neon: #00ff9c;
+        --blue-neon: #00bfff;
+        --text-color: #e0e0e0;
+        --tag-bg: #1f2430;
+        --tag-border: #2d3343;
+      }
 
-    * {
+      * {
+        box-sizing: border-box;
         margin: 0;
         padding: 0;
-        box-sizing: border-box;
-    }
-
-    body {
-        font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-        background-color: #f5f7fa;
-        color: var(--text);
-        line-height: 1.6;
-    }
-
-    .container {
-        max-width: 600px;
-        margin: 3rem auto;
-        background: white;
-        border: 1px solid var(--border);
-        border-radius: 12px;
-        box-shadow: var(--shadow);
-        padding: 2rem;
-    }
-
-    h2 {
-        font-size: 1.5rem;
-        font-weight: 600;
-        margin-bottom: 1.5rem;
-        text-align: center;
-        color: var(--text);
-    }
-
-    form {
-        display: flex;
-        flex-direction: column;
-        gap: 1rem;
-    }
-
-    label {
-        font-weight: 500;
-        margin-bottom: 0.25rem;
-        display: block;
-    }
-
-    input, select {
-        padding: 0.6rem 0.8rem;
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        font-size: 0.95rem;
-        background-color: var(--light-bg);
-        transition: border-color 0.3s ease;
-        width: 100%;
-    }
-
-    input:focus, select:focus {
-        outline: none;
-        border-color: var(--primary);
-        box-shadow: 0 0 0 2px rgba(46, 204, 113, 0.2);
-    }
-
-    button {
-        background-color: var(--primary);
-        color: white;
-        border: none;
-        padding: 0.75rem;
-        border-radius: 16px;
-        font-size: 1rem;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    button:hover {
-        background-color: var(--primary-dark);
-    }
-
-    .planos {
-        display: flex;
-        flex-direction: column;
-        gap: 0.75rem;
-    }
-
-    .plano {
-        padding: 1rem;
-        border: 1px solid var(--border);
-        border-radius: 16px;
-        background-color: var(--light-bg);
-        cursor: pointer;
-        transition: border-color 0.3s ease;
-    }
-
-    .plano:hover {
-        border-color: var(--primary);
-    }
-
-    .plano.selected {
-        border-color: var(--primary);
-        background-color: #eafaf1;
-    }
-
-    .message {
-        margin-top: 1rem;
-        padding: 0.75rem;
-        border-radius: 12px;
-        background-color: #eafaf1;
-        color: var(--primary-dark);
-        font-weight: 500;
-        display: none;
-    }
-
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>Cadastro e Planos</h2>
-    <form id="cadastroForm">
-      <div>
-        <label for="nome">Nome:</label>
-        <input type="text" id="nome" name="nome" required />
-      </div>
-      <div>
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email" required />
-      </div>
-      <div>
-        <label for="senha">Senha:</label>
-        <input type="password" id="senha" name="senha" required />
-      </div>
-      <div class="planos">
-        <div class="plano" data-plano="Básico">Plano Básico - Gratuito</div>
-        <div class="plano" data-plano="Intermediário">Plano Intermediário - R$19,90/mês</div>
-        <div class="plano" data-plano="Avançado">Plano Avançado - R$39,90/mês</div>
-      </div>
-      <input type="hidden" name="plano" id="planoSelecionado" required />
-      <button type="submit">Cadastrar</button>
-    </form>
-    <div class="message" id="mensagemSucesso">Cadastro realizado com sucesso!</div>
-  </div>
-
-  <script>
-    const planos = document.querySelectorAll('.plano');
-    const planoInput = document.getElementById('planoSelecionado');
-    const form = document.getElementById('cadastroForm');
-    const mensagem = document.getElementById('mensagemSucesso');
-
-    planos.forEach(plano => {
-      plano.addEventListener('click', () => {
-        planos.forEach(p => p.classList.remove('selected'));
-        plano.classList.add('selected');
-        planoInput.value = plano.dataset.plano;
-      });
-    });
-
-    form.addEventListener('submit', (e) => {
-      e.preventDefault();
-      if (!planoInput.value) {
-        alert("Selecione um plano.");
-        return;
+        font-family: 'Orbitron', sans-serif;
       }
-      form.reset();
-      planos.forEach(p => p.classList.remove('selected'));
-      planoInput.value = '';
-      mensagem.style.display = 'block';
-      setTimeout(() => {
-        mensagem.style.display = 'none';
-      }, 3000);
-    });
-  </script>
-</body>
+
+      body {
+        background-color: var(--bg-dark);
+        color: var(--text-color);
+        padding: 2rem;
+      }
+
+      h1 {
+        font-size: 2rem;
+        color: var(--green-neon);
+        margin-bottom: 1.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .ti-badge {
+        background: linear-gradient(135deg, var(--green-neon), var(--blue-neon));
+        color: #000;
+        padding: 0.3rem 0.6rem;
+        border-radius: 8px;
+        font-weight: bold;
+        font-size: 1rem;
+        box-shadow: 0 0 8px var(--green-neon);
+        animation: pulse 3s infinite;
+      }
+
+      @keyframes pulse {
+        0%, 100% { box-shadow: 0 0 8px var(--green-neon); }
+        50% { box-shadow: 0 0 16px var(--blue-neon); }
+      }
+
+      .tutorials-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 1.5rem;
+      }
+
+      .card {
+        background-color: var(--card-bg);
+        border-radius: 16px;
+        box-shadow: 0 0 8px rgba(0, 255, 156, 0.1);
+        padding: 1rem;
+        transition: transform 0.3s, box-shadow 0.3s;
+        position: relative;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0 15px rgba(0, 255, 156, 0.3);
+      }
+
+      .card h2 {
+        font-size: 1.2rem;
+        color: var(--blue-neon);
+        margin-bottom: 0.5rem;
+      }
+
+      .tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-bottom: 0.8rem;
+      }
+
+      .tag {
+        background-color: var(--tag-bg);
+        border: 1px solid var(--tag-border);
+        border-radius: 8px;
+        padding: 0.3rem 0.6rem;
+        font-size: 0.75rem;
+        color: var(--green-neon);
+      }
+
+      .card p {
+        font-size: 0.9rem;
+        line-height: 1.4;
+        color: var(--text-color);
+      }
+
+      .video-button {
+        margin-top: 1rem;
+        padding: 0.5rem 1rem;
+        background: linear-gradient(135deg, var(--green-neon), var(--blue-neon));
+        color: #000;
+        border: none;
+        border-radius: 8px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: background 0.3s;
+      }
+
+      .video-button:hover {
+        filter: brightness(1.2);
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 999;
+        display: none;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        background-color: var(--card-bg);
+        padding: 1rem;
+        border-radius: 12px;
+        max-width: 90%;
+        box-shadow: 0 0 20px var(--green-neon);
+      }
+
+      .modal-content iframe {
+        width: 100%;
+        height: 300px;
+        border: none;
+        border-radius: 8px;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 2rem;
+        right: 2rem;
+        font-size: 2rem;
+        color: var(--green-neon);
+        cursor: pointer;
+      }
+
+      @media (max-width: 768px) {
+        .modal-content iframe {
+          height: 200px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <h1><span class="ti-badge">TI</span> Tutoriais</h1>
+    <div class="tutorials-container">
+      <div class="card">
+        <h2>Como abrir um chamado</h2>
+        <div class="tags">
+          <div class="tag">Chamados</div>
+          <div class="tag">Sistema</div>
+        </div>
+        <p>Aprenda o passo a passo para registrar corretamente um chamado técnico no sistema da Green TI.</p>
+        <button class="video-button" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">Ver vídeo</button>
+      </div>
+
+      <div class="card">
+        <h2>Solicitação de Equipamento</h2>
+        <div class="tags">
+          <div class="tag">Equipamentos</div>
+          <div class="tag">Requisição</div>
+        </div>
+        <p>Veja como solicitar notebooks, periféricos ou outros equipamentos necessários para o trabalho.</p>
+        <button class="video-button" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">Ver vídeo</button>
+      </div>
+    </div>
+
+    <div class="modal" id="videoModal" onclick="closeModal(event)">
+      <div class="modal-content">
+        <span class="modal-close" onclick="closeModal(event)">&times;</span>
+        <iframe id="videoFrame" src="" allowfullscreen></iframe>
+      </div>
+    </div>
+
+    <script>
+      function openModal(videoUrl) {
+        const modal = document.getElementById("videoModal");
+        const iframe = document.getElementById("videoFrame");
+        iframe.src = videoUrl;
+        modal.classList.add("active");
+      }
+
+      function closeModal(event) {
+        const modal = document.getElementById("videoModal");
+        if (event.target.id === "videoModal" || event.target.classList.contains("modal-close")) {
+          modal.classList.remove("active");
+          document.getElementById("videoFrame").src = "";
+        }
+      }
+    </script>
+  </body>
 </html>

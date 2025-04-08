@@ -59,7 +59,7 @@ header {
 }
 
 .title span {
-  color: var(--primary);
+  color: var(--text);
 }
 
 /* BARRA DE PESQUISA */
@@ -392,3 +392,4 @@ main {
     justify-content: center;
   }
 }
+
