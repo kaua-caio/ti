@@ -1,218 +1,230 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Tutoriais | Green TI</title>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-    <style>
-      :root {
-        --bg-dark: #0f1117;
-        --card-bg: #161a23;
-        --green-neon: #00ff9c;
-        --blue-neon: #00bfff;
-        --text-color: #e0e0e0;
-        --tag-bg: #1f2430;
-        --tag-border: #2d3343;
-      }
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Checklist Interativo - Greenn</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Inter', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
 
-      * {
-        box-sizing: border-box;
-        margin: 0;
-        padding: 0;
-        font-family: 'Orbitron', sans-serif;
-      }
+    body {
+      background-color: #f9f9f9;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
 
-      body {
-        background-color: var(--bg-dark);
-        color: var(--text-color);
-        padding: 2rem;
-      }
+    .modal {
+      background: white;
+      border-radius: 16px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.1);
+      width: 90%;
+      max-width: 500px;
+      padding: 2rem;
+      position: relative;
+      transform: rotate(-2deg) scale(0.95);
+      transition: all 0.3s ease-in-out;
+      animation: floatIn 0.6s ease forwards;
+    }
 
-      h1 {
-        font-size: 2rem;
-        color: var(--green-neon);
-        margin-bottom: 1.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
+    @keyframes floatIn {
+      from {
+        opacity: 0;
+        transform: translateY(40px) rotate(-4deg);
       }
+      to {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+      }
+    }
 
-      .ti-badge {
-        background: linear-gradient(135deg, var(--green-neon), var(--blue-neon));
-        color: #000;
-        padding: 0.3rem 0.6rem;
-        border-radius: 8px;
-        font-weight: bold;
-        font-size: 1rem;
-        box-shadow: 0 0 8px var(--green-neon);
-        animation: pulse 3s infinite;
-      }
+    .modal h2 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+    }
 
-      @keyframes pulse {
-        0%, 100% { box-shadow: 0 0 8px var(--green-neon); }
-        50% { box-shadow: 0 0 16px var(--blue-neon); }
-      }
+    .modal p {
+      font-size: 1rem;
+      color: #333;
+      margin-bottom: 1.5rem;
+    }
 
-      .tutorials-container {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-        gap: 1.5rem;
-      }
+    .modal .btns {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+    }
 
-      .card {
-        background-color: var(--card-bg);
-        border-radius: 16px;
-        box-shadow: 0 0 8px rgba(0, 255, 156, 0.1);
-        padding: 1rem;
-        transition: transform 0.3s, box-shadow 0.3s;
-        position: relative;
-      }
+    .modal button {
+      padding: 0.6rem 1.2rem;
+      background: linear-gradient(135deg, #00b894, #00cec9);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background 0.3s;
+    }
 
-      .card:hover {
-        transform: translateY(-5px);
-        box-shadow: 0 0 15px rgba(0, 255, 156, 0.3);
-      }
+    .modal button:hover {
+      background: linear-gradient(135deg, #00cec9, #00b894);
+    }
 
-      .card h2 {
-        font-size: 1.2rem;
-        color: var(--blue-neon);
-        margin-bottom: 0.5rem;
-      }
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #888;
+    }
 
-      .tags {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 0.4rem;
-        margin-bottom: 0.8rem;
-      }
+    .welcome {
+      text-align: center;
+      animation: fadeIn 0.5s ease forwards;
+    }
 
-      .tag {
-        background-color: var(--tag-bg);
-        border: 1px solid var(--tag-border);
-        border-radius: 8px;
-        padding: 0.3rem 0.6rem;
-        font-size: 0.75rem;
-        color: var(--green-neon);
-      }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
 
-      .card p {
-        font-size: 0.9rem;
-        line-height: 1.4;
-        color: var(--text-color);
-      }
+    .hidden { display: none; }
 
-      .video-button {
-        margin-top: 1rem;
-        padding: 0.5rem 1rem;
-        background: linear-gradient(135deg, var(--green-neon), var(--blue-neon));
-        color: #000;
-        border: none;
-        border-radius: 8px;
-        font-weight: bold;
-        cursor: pointer;
-        transition: background 0.3s;
-      }
+    .step-indicator {
+      text-align: center;
+      font-size: 0.9rem;
+      color: #555;
+      margin-bottom: 1rem;
+    }
 
-      .video-button:hover {
-        filter: brightness(1.2);
-      }
+    .step-card {
+      animation: fadeIn 0.3s ease;
+    }
+  </style>
+</head>
+<body>
 
-      .modal {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(0, 0, 0, 0.8);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        z-index: 999;
-        display: none;
-      }
-
-      .modal.active {
-        display: flex;
-      }
-
-      .modal-content {
-        background-color: var(--card-bg);
-        padding: 1rem;
-        border-radius: 12px;
-        max-width: 90%;
-        box-shadow: 0 0 20px var(--green-neon);
-      }
-
-      .modal-content iframe {
-        width: 100%;
-        height: 300px;
-        border: none;
-        border-radius: 8px;
-      }
-
-      .modal-close {
-        position: absolute;
-        top: 2rem;
-        right: 2rem;
-        font-size: 2rem;
-        color: var(--green-neon);
-        cursor: pointer;
-      }
-
-      @media (max-width: 768px) {
-        .modal-content iframe {
-          height: 200px;
-        }
-      }
-    </style>
-  </head>
-  <body>
-    <h1><span class="ti-badge">TI</span> Tutoriais</h1>
-    <div class="tutorials-container">
-      <div class="card">
-        <h2>Como abrir um chamado</h2>
-        <div class="tags">
-          <div class="tag">Chamados</div>
-          <div class="tag">Sistema</div>
+  <div class="modal" id="modal">
+    <button class="close-btn" onclick="closeModal()">✖</button>
+    <div id="modal-content">
+      <div class="welcome">
+        <h2>Bem-vindo ao Checklist Greenn</h2>
+        <p>Você verá um passo por vez para configurar seu acesso. Clique em "Começar" para iniciar!</p>
+        <div class="btns" style="justify-content: center;">
+          <button onclick="nextStep()">Começar</button>
         </div>
-        <p>Aprenda o passo a passo para registrar corretamente um chamado técnico no sistema da Green TI.</p>
-        <button class="video-button" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">Ver vídeo</button>
-      </div>
-
-      <div class="card">
-        <h2>Solicitação de Equipamento</h2>
-        <div class="tags">
-          <div class="tag">Equipamentos</div>
-          <div class="tag">Requisição</div>
-        </div>
-        <p>Veja como solicitar notebooks, periféricos ou outros equipamentos necessários para o trabalho.</p>
-        <button class="video-button" onclick="openModal('https://www.youtube.com/embed/dQw4w9WgXcQ')">Ver vídeo</button>
       </div>
     </div>
+  </div>
 
-    <div class="modal" id="videoModal" onclick="closeModal(event)">
-      <div class="modal-content">
-        <span class="modal-close" onclick="closeModal(event)">&times;</span>
-        <iframe id="videoFrame" src="" allowfullscreen></iframe>
-      </div>
-    </div>
+  <script>
+    const passos = [
+      {
+        titulo: "Passo 1: Acessar ao Portal Jumpcloud",
+        descricao: "Acesse o link: <a href='https://console.jumpcloud.com/login' target='_blank'>Jumpcloud Login</a>",
+      },
+      {
+        titulo: "Passo 2: Inserir e-mail e senha provisória",
+        descricao: "Use seu e-mail profissional e a senha provisória fornecida.",
+      },
+      {
+        titulo: "Passo 3: Cadastrar Multifator",
+        descricao: "Recomendamos o uso do Jumpcloud Protect.",
+      },
+      {
+        titulo: "Passo 4: Acessar Campo Segurança",
+        descricao: "Navegue até a aba 'Segurança' no painel.",
+      },
+      {
+        titulo: "Passo 5: Resetar Senha",
+        descricao: "Clique em 'Resetar Senha' e siga as instruções.",
+      },
+      {
+        titulo: "Passo 6: Criar Nova Senha",
+        descricao: "Sua senha deve ter 12 dígitos, com letras maiúsculas, minúsculas, números e caracteres especiais.",
+      },
+      {
+        titulo: "Passo 7: Senha Alterada",
+        descricao: "Confirme a alteração da senha.",
+      },
+      {
+        titulo: "Passo 8: Fechar o Portal",
+        descricao: "Você pode fechar o portal após concluir.",
+      },
+      {
+        titulo: "Passo 9: Configurar Google Authenticator",
+        descricao: "Acesse sua conta Google e vá até a aba 'Segurança'.",
+      },
+      {
+        titulo: "Passo 10: Adicionar Novo Autenticador",
+        descricao: "Use o mesmo aplicativo autenticador configurado no Jumpcloud.",
+      },
+      {
+        titulo: "Passo 11: Finalizar Configuração",
+        descricao: "Revise todas as configurações e conclua o processo.",
+      },
+    ];
 
-    <script>
-      function openModal(videoUrl) {
-        const modal = document.getElementById("videoModal");
-        const iframe = document.getElementById("videoFrame");
-        iframe.src = videoUrl;
-        modal.classList.add("active");
+    let currentStep = -1;
+
+    function nextStep() {
+      currentStep++;
+      renderStep();
+    }
+
+    function prevStep() {
+      if (currentStep > 0) currentStep--;
+      renderStep();
+    }
+
+    function closeModal() {
+      document.getElementById('modal').classList.add('hidden');
+    }
+
+    function renderStep() {
+      if (currentStep >= passos.length) {
+        document.getElementById('modal-content').innerHTML = `
+          <div class="welcome">
+            <h2>Checklist Concluído!</h2>
+            <p>Parabéns! Você finalizou todas as etapas com sucesso. 🥳</p>
+            <div class="btns" style="justify-content: center;">
+              <button onclick="closeModal()">Fechar</button>
+            </div>
+          </div>
+        `;
+        return;
       }
 
-      function closeModal(event) {
-        const modal = document.getElementById("videoModal");
-        if (event.target.id === "videoModal" || event.target.classList.contains("modal-close")) {
-          modal.classList.remove("active");
-          document.getElementById("videoFrame").src = "";
-        }
+      const passo = passos[currentStep];
+      document.getElementById('modal-content').innerHTML = `
+        <div class="step-card">
+          <div class="step-indicator">Etapa ${currentStep + 1} de ${passos.length}</div>
+          <h2>${passo.titulo}</h2>
+          <p>${passo.descricao}</p>
+          <div class="btns">
+            <button onclick="prevStep()" ${currentStep === 0 ? 'disabled' : ''}>Voltar</button>
+            <button onclick="nextStep()">Próximo</button>
+          </div>
+        </div>
+      `;
+    }
+
+    document.addEventListener("click", (e) => {
+      const modal = document.getElementById("modal");
+      if (!modal.contains(e.target) && !modal.classList.contains("hidden")) {
+        closeModal();
       }
-    </script>
-  </body>
+    });
+  </script>
+</body>
 </html>

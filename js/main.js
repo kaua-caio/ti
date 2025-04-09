@@ -1,8 +1,9 @@
 document.addEventListener("DOMContentLoaded", function() {
-    // Duplica as frases para efeito contínuo
+    // Slider no estilo CNN
     const sliderTrack = document.querySelector('.slider-track');
     const slides = document.querySelectorAll('.slide');
     
+    // Duplica os slides para efeito contínuo
     slides.forEach(slide => {
         const clone = slide.cloneNode(true);
         sliderTrack.appendChild(clone);
@@ -14,18 +15,41 @@ document.addEventListener("DOMContentLoaded", function() {
         window.open('https://mail.google.com/chat/u/0/#chat/home', '_blank');
     });
     
-    // Suaviza o carregamento
-    document.body.style.opacity = '1';
+    // Ativa efeitos de entrada
+    setTimeout(() => {
+        document.body.classList.add('loaded');
+    }, 200);
+    
+    // Modal
+    const modal = document.getElementById("meuModal");
+    const btnModal = document.querySelector("#botoes button:last-child");
+    const span = document.getElementsByClassName("fechar")[0];
+    
+    btnModal.addEventListener('click', function() {
+        modal.style.display = "flex";
+        setTimeout(() => {
+            modal.style.opacity = "1";
+        }, 10);
+    });
+    
+    span.addEventListener('click', function() {
+        modal.style.opacity = "0";
+        setTimeout(() => {
+            modal.style.display = "none";
+        }, 300);
+    });
+    
+    window.addEventListener('click', function(e) {
+        if (e.target === modal) {
+            modal.style.opacity = "0";
+            setTimeout(() => {
+                modal.style.display = "none";
+            }, 300);
+        }
+    });
 });
 
 // Mantém todas as funções originais
-function abrirTask() {
-    window.open('https://forms.clickup.com/9011833817/f/8cjbayt-7791/8LVM6MSRGMTA3SCR8N', '_blank');
-}
-
-// ... outras funções permanecem iguais ...
-
-// Função para redirecionar ao clicar no botão "Abrir Task"
 function abrirTask() {
     window.open('https://forms.clickup.com/9011833817/f/8cjbayt-7791/8LVM6MSRGMTA3SCR8N', '_blank');
 }
@@ -50,30 +74,18 @@ function abrirTutoriais() {
     window.location.href = 'public/tutoriais/tutoriais.html';
 }
 
-// Modal
-const modal = document.getElementById("meuModal");
-const btnModal = document.querySelector("#botoes button:last-child");
-const span = document.getElementsByClassName("fechar")[0];
-document.getElementById("meuModal").style.display = "none";
+function abrirModal() {
+    const modal = document.getElementById("meuModal");
+    modal.style.display = "flex";
+    setTimeout(() => {
+        modal.style.opacity = "1";
+    }, 10);
+}
 
-document.addEventListener("DOMContentLoaded", function () {
-    var modal = document.getElementById("meuModal");
-    var fechar = document.querySelector(".fechar");
-
-    window.abrirModal = function () {
-        modal.style.display = "flex";
-    };
-
-    window.fecharModal = function () {
+function fecharModal() {
+    const modal = document.getElementById("meuModal");
+    modal.style.opacity = "0";
+    setTimeout(() => {
         modal.style.display = "none";
-    };
-
-    fechar.addEventListener("click", fecharModal);
-
-    window.addEventListener("click", function (e) {
-        if (e.target === modal) {
-            fecharModal();
-        }
-    });
-});
-
+    }, 300);
+}
