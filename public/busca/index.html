@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Conecta IA | Assistente Inteligente</title>
+    <title>Conecta</title>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -669,8 +669,8 @@
     
     <div class="container">
         <header class="app-header">
-            <h1 class="app-title">Conecta IA</h1>
-            <p class="app-subtitle">Seu assistente inteligente para conexões corporativas</p>
+            <h1 class="app-title">Conecta</h1>
+            <p class="app-subtitle">Encontre e se conecte com mais colegas de trabalho</p>
         </header>
 
         <div class="search-container">
@@ -808,54 +808,168 @@
 
             // Dados de exemplo
             const colaboradores = [
-                { 
-                    nome: 'Ana Silva', 
-                    email: 'ana.silva@empresa.com', 
-                    chatLink: 'https://chat.google.com', 
-                    setor: 'marketing', 
-                    cargo: 'analista',
-                    initials: 'AS'
-                },
-                { 
-                    nome: 'Pedro Oliveira', 
-                    email: 'pedro.oliveira@empresa.com', 
-                    chatLink: 'https://chat.google.com', 
-                    setor: 'tecnologia', 
-                    cargo: 'gerente',
-                    initials: 'PO'
-                },
-                { 
-                    nome: 'Mariana Souza', 
-                    email: 'mariana.souza@empresa.com', 
-                    chatLink: 'https://chat.google.com', 
-                    setor: 'rh', 
-                    cargo: 'analista',
-                    initials: 'MS'
-                },
-                { 
-                    nome: 'Lucas Pereira', 
-                    email: 'lucas.pereira@empresa.com', 
-                    chatLink: 'https://chat.google.com', 
-                    setor: 'tecnologia', 
-                    cargo: 'diretor',
-                    initials: 'LP'
-                },
-                { 
-                    nome: 'Carla Rocha', 
-                    email: 'carla.rocha@empresa.com', 
-                    chatLink: 'https://chat.google.com', 
-                    setor: 'marketing', 
-                    cargo: 'gerente',
-                    initials: 'CR'
-                },
-                { 
-                    nome: 'João Santos', 
-                    email: 'joao.santos@empresa.com', 
-                    chatLink: 'https://chat.google.com', 
-                    setor: 'financeiro', 
-                    cargo: 'analista',
-                    initials: 'JS'
-                }
+            { 
+            nome: 'Alana Capriolli', 
+            email: 'alana.capriolli@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'RH', 
+            cargo: 'RH recruter',
+            initials: 'AC'
+        },
+        { 
+            nome: 'Aline Stocco', 
+            email: 'alinestocco@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'Relacionamento com o cliente',
+            cargo: 'SAC',
+            initials: 'AE'
+        },
+        { 
+            nome: 'Aline Oliveira', 
+            email: 'aline.oliveira@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'Administrativo', 
+            cargo: 'analista',
+            initials: 'AO'
+        },
+        { 
+            nome: 'Aline Cristo', 
+            email: 'aline.cristo@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: '', 
+            cargo: '',
+            initials: 'AC'
+        },
+        { 
+            nome: 'Alison Guerra', 
+            email: 'alison@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'marketing', 
+            cargo: 'VideoMaker',
+            initials: 'AG'
+        },
+        { 
+             nome: 'Allan Godoy',
+    email: 'allan@greenn.com.br',
+            chatLink: 'https://chat.google.com', 
+            setor: 'Tecnologia', 
+            cargo: '',
+            initials: 'AG'
+        },
+        { 
+            nome: 'Amanda Brito',
+            email: 'amanda@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'RH', 
+            cargo: 'Gerente de recursos Humanos',
+            initials: 'AB'
+        },
+
+        { 
+           nome: 'Ana Carolina',
+            email: 'ana.carolina@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'RH', 
+            cargo: 'RH Recruter',
+            initials: 'AC'
+        },
+        { 
+           nome: 'Ana Franca',
+    email: 'ana.franca@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'Relacionamento com o Cliente', 
+            cargo: 'SAC',
+            initials: 'AN'
+        },
+        { 
+            nome: 'Ana Maria Miguel',
+    email: 'ana.miguel@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'Relacionamaneto com o Cliente', 
+            cargo: 'SDR',
+            initials: 'AM'
+        },
+        { 
+            nome: 'Ana Paula Maximiano',
+    email: 'anapaula@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'Relacionamento com o Cliente ', 
+            cargo: 'SAC',
+            initials: 'AP'
+        },
+        { 
+            nome: 'Angélica Arruda',
+    email: 'angelica.arruda@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'Relacionamento com o Cliente', 
+            cargo: 'SDR',
+            initials: 'AA'
+        },
+        { 
+            nome: 'Anthony Andrade Oliveira',
+    email: 'anthony.oliveira@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'Financeiro', 
+            cargo: 'Auxiliar Financeiro',
+            initials: 'AA'
+        },
+         { 
+            nome: 'Barbara Metzner',
+    email: 'barbara.metzner@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: 'Marketing', 
+            cargo: '',
+            initials: ''
+        }, { 
+            nome: 'Bianca Santana',
+    email: 'bianca@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: '', 
+            cargo: '',
+            initials: ''
+        }, { 
+            nome: 'Brenda Meireles',
+    email: 'brenda.meireles@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: '', 
+            cargo: '',
+            initials: ''
+        }, { 
+            nome: 'Bruna Giseli Barbosa',
+    email: 'bruna.barbosa@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: '', 
+            cargo: '',
+            initials: ''
+        }, { 
+            nome: 'Caio Bolognese',
+    email: 'caio.bolognese@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: '', 
+            cargo: '',
+            initials: ''
+        }, { 
+            nome: 'Carlos Massucato',
+    email: 'carlos.massucato@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: '', 
+            cargo: '',
+            initials: ''
+        }, { 
+            nome: 'Carlos Silva Araújo',
+    email: 'carlos.davi@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: '', 
+            cargo: '',
+            initials: ''
+        }, { 
+            nome: 'Daiani Silva',
+    email: 'daiani.silva@greenn.com.br', 
+            chatLink: 'https://chat.google.com', 
+            setor: '', 
+            cargo: '',
+            initials: ''
+        },
             ];
 
             // Mostrar/ocultar sidebar de filtros
@@ -1048,19 +1162,19 @@
                 setTimeout(() => {
                     switch(message) {
                         case '1':
-                            addMessage("Para encontrar um colega, você pode:\n\n1️⃣ - Buscar por nome\n2️⃣ - Filtrar por departamento\n3️⃣ - Filtrar por cargo\n\nDigite o número correspondente à opção desejada:");
+                            addMessage("Para encontrar um colega, você pode:\n\n1 - Buscar por nome\n2 - Filtrar por departamento\n3- Filtrar por cargo\n\n");
                             break;
                         case '2':
                             addMessage("Nossos departamentos:\n\n🏢 Marketing\n💻 Tecnologia\n👥 Recursos Humanos\n💰 Financeiro\n\nDigite o nome do departamento para saber mais ou 0 para voltar:");
                             break;
                         case '3':
-                            addMessage("Como usar a plataforma:\n\n1️⃣ - Use a barra de busca para encontrar colegas\n2️⃣ - Clique em 'Filtros' para refinar sua pesquisa\n3️⃣ - Copie emails ou inicie chats diretamente\n\nDigite 0 para voltar ao menu principal");
+                            addMessage("Como usar a plataforma:\n\n1 - Use a barra de busca para encontrar colegas\n2- Clique em 'Filtros' para refinar sua pesquisa\n3 - Copie emails ou inicie chats diretamente\n\nDigite 0 para voltar ao menu principal");
                             break;
                         case '4':
                             addMessage("Para outras dúvidas, entre em contato com o RH pelo email rh@empresa.com ou digite sua pergunta específica.");
                             break;
                         case '0':
-                            addMessage("Menu principal. Como posso te ajudar?\n\n1️⃣ - Encontrar um colega\n2️⃣ - Saber sobre departamentos\n3️⃣ - Aprender a usar a plataforma\n4️⃣ - Outras dúvidas");
+                            addMessage("Menu principal. Como posso te ajudar?\n\n1 - Encontrar um colega\n2 - Saber sobre departamentos\n3 - Aprender a usar a plataforma\n4 - Outras dúvidas");
                             break;
                         default:
                             if (message.toLowerCase().includes('marketing')) {
@@ -1072,7 +1186,7 @@
                             } else if (message.toLowerCase().includes('financeiro')) {
                                 addMessage("O Financeiro gerencia:\n- Contas a pagar/receber\n- Orçamento\n- Relatórios financeiros\n\nColaborador: João Santos\n\nDigite 0 para voltar");
                             } else {
-                                addMessage("Não entendi sua mensagem. Por favor, digite o número correspondente à opção desejada:\n\n1️⃣ - Encontrar um colega\n2️⃣ - Saber sobre departamentos\n3️⃣ - Aprender a usar a plataforma\n4️⃣ - Outras dúvidas\n\nOu digite 0 para ver o menu principal");
+                                addMessage("Não entendi sua mensagem estamos em testes ainda. Por favor, digite o número correspondente à opção desejada:\n\n1️⃣ - Encontrar um colega\n2️⃣ - Saber sobre departamentos\n3️⃣ - Aprender a usar a plataforma\n4️⃣ - Outras dúvidas\n\nOu digite 0 para ver o menu principal");
                             }
                     }
                 }, 800);

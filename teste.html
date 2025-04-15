@@ -1,206 +1,84 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-  <meta charset="UTF-8">
-  <title>Checklist de Configuração - Greenn</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Faixa Time de TI</title>
   <style>
-    * {
-      box-sizing: border-box;
-    }
-
     body {
       margin: 0;
+      background: #0d0d0d;
       font-family: 'Segoe UI', sans-serif;
-      background: #f5f7fa;
-      color: #333;
+      color: white;
+      overflow: hidden;
     }
 
-    .tela-boas-vindas {
-      position: fixed;
-      inset: 0;
-      background: linear-gradient(135deg, #00c77b, #0077ff);
+    .faixa {
+      position: relative;
+      height: 200px;
       display: flex;
       align-items: center;
       justify-content: center;
-      flex-direction: column;
-      color: white;
-      z-index: 10;
-      transition: opacity 0.6s ease, transform 0.6s ease;
+      overflow: hidden;
+      background: linear-gradient(145deg, #0f2027, #203a43, #2c5364);
+      color: #00ffcc;
+      text-align: center;
+      font-size: 1.8rem;
+      font-weight: 600;
+      letter-spacing: 1px;
+      z-index: 1;
     }
 
-    .tela-boas-vindas.oculto {
-      opacity: 0;
-      transform: translateY(-100%);
-      pointer-events: none;
-    }
-
-    .tela-boas-vindas h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-    }
-
-    .tela-boas-vindas button {
-      background: white;
-      color: #0077ff;
-      border: none;
-      padding: 0.8rem 2rem;
-      font-size: 1.1rem;
-      border-radius: 10px;
-      cursor: pointer;
-      transition: background 0.3s ease;
-    }
-
-    .tela-boas-vindas button:hover {
-      background: #e0e0e0;
-    }
-
-    .passo-btn {
-      display: block;
-      margin: 1rem auto;
-      padding: 1rem 2rem;
-      background: #0077ff;
-      color: white;
-      border: none;
-      border-radius: 10px;
-      cursor: pointer;
-      font-size: 1rem;
-    }
-
-    .modal {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      width: 90%;
-      max-width: 500px;
-      transform: translate(-50%, -50%) scale(0.9);
-      background: white;
-      padding: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-      z-index: 100;
-      opacity: 0;
-      pointer-events: none;
-      transition: all 0.5s ease;
-    }
-
-    .modal.ativo {
-      opacity: 1;
-      transform: translate(-50%, -50%) scale(1);
-      pointer-events: auto;
-    }
-
-    .modal h2 {
-      margin-top: 0;
-      font-size: 1.5rem;
-    }
-
-    .modal .fechar {
+    .faixa::before, .faixa::after {
+      content: '';
       position: absolute;
-      top: 15px;
-      right: 15px;
-      background: transparent;
-      border: none;
-      font-size: 1.5rem;
-      cursor: pointer;
-      color: #999;
-      transition: color 0.3s ease;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, #00ffc355 10%, transparent 70%);
+      animation: flutuar 6s ease-in-out infinite alternate, pulsar 2.5s infinite ease-in-out;
+      filter: blur(60px);
+      opacity: 0.3;
+      z-index: 0;
     }
 
-    .modal .fechar:hover {
-      color: #0077ff;
+    .faixa::after {
+      animation-delay: 2s;
+      background: radial-gradient(circle, #00fffb55 10%, transparent 70%);
+    }
+
+    .texto {
+      position: relative;
+      z-index: 2;
+      animation: aparecer 2s ease forwards;
+      opacity: 0;
+    }
+
+    @keyframes flutuar {
+      0% { transform: translate(-30%, -30%) scale(1); }
+      100% { transform: translate(30%, 30%) scale(1.1); }
+    }
+
+    @keyframes pulsar {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 0.6; }
+    }
+
+    @keyframes aparecer {
+      to { opacity: 1; transform: translateY(0); }
+      from { opacity: 0; transform: translateY(20px); }
+    }
+
+    @media (max-width: 600px) {
+      .faixa {
+        font-size: 1.2rem;
+        padding: 1rem;
+      }
     }
   </style>
 </head>
 <body>
-
-  <div class="tela-boas-vindas" id="boasVindas">
-    <h1>Bem-vindo à Configuração Greenn</h1>
-    <button onclick="iniciarChecklist()">Iniciar</button>
+  <div class="faixa">
+    <div class="texto">🔧 Em breve novidades - <strong>Time de TI 2.0</strong></div>
   </div>
-
-  <div id="passosContainer"></div>
-
-  <div id="modal" class="modal">
-    <button class="fechar" onclick="fecharModal()">×</button>
-    <h2 id="modalTitulo"></h2>
-    <p id="modalDescricao"></p>
-  </div>
-
-  <script>
-    const passos = [
-      {
-        titulo: "Passo 1: Acessar ao Portal Jumpcloud",
-        descricao: "Acesse o link: <a href='https://console.jumpcloud.com/login' target='_blank'>Jumpcloud Login</a>",
-      },
-      {
-        titulo: "Passo 2: Inserir e-mail e senha provisória",
-        descricao: "Use seu e-mail profissional e a senha provisória fornecida.",
-      },
-      {
-        titulo: "Passo 3: Cadastrar Multifator",
-        descricao: "Recomendamos o uso do Jumpcloud Protect.",
-      },
-      {
-        titulo: "Passo 4: Acessar Campo Segurança",
-        descricao: "Navegue até a aba 'Segurança' no painel.",
-      },
-      {
-        titulo: "Passo 5: Resetar Senha",
-        descricao: "Clique em 'Resetar Senha' e siga as instruções.",
-      },
-      {
-        titulo: "Passo 6: Criar Nova Senha",
-        descricao: "Sua senha deve ter 12 dígitos, com letras maiúsculas, minúsculas, números e caracteres especiais.",
-      },
-      {
-        titulo: "Passo 7: Senha Alterada",
-        descricao: "Confirme a alteração da senha.",
-      },
-      {
-        titulo: "Passo 8: Fechar o Portal",
-        descricao: "Você pode fechar o portal após concluir.",
-      },
-      {
-        titulo: "Passo 9: Configurar Google Authenticator",
-        descricao: "Acesse sua conta Google e vá até a aba 'Segurança'.",
-      },
-      {
-        titulo: "Passo 10: Adicionar Novo Autenticador",
-        descricao: "Use o mesmo aplicativo autenticador configurado no Jumpcloud.",
-      },
-      {
-        titulo: "Passo 11: Finalizar Configuração",
-        descricao: "Revise todas as configurações e conclua o processo.",
-      },
-    ];
-
-    const container = document.getElementById("passosContainer");
-    const modal = document.getElementById("modal");
-    const modalTitulo = document.getElementById("modalTitulo");
-    const modalDescricao = document.getElementById("modalDescricao");
-    const boasVindas = document.getElementById("boasVindas");
-
-    function iniciarChecklist() {
-      boasVindas.classList.add("oculto");
-      passos.forEach((passo, index) => {
-        const btn = document.createElement("button");
-        btn.className = "passo-btn";
-        btn.innerText = passo.titulo;
-        btn.onclick = () => abrirModal(passo);
-        container.appendChild(btn);
-      });
-    }
-
-    function abrirModal(passo) {
-      modalTitulo.innerText = passo.titulo;
-      modalDescricao.innerHTML = passo.descricao;
-      modal.classList.add("ativo");
-    }
-
-    function fecharModal() {
-      modal.classList.remove("ativo");
-    }
-  </script>
-
 </body>
 </html>

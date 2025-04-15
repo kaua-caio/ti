@@ -20,6 +20,7 @@
     <div class="neon-line"></div>
 </header>
 
+
     <div class="slider-container">
         <div class="slider-fixed">
             <span class="greenn-tag">GREENN</span>
@@ -38,6 +39,15 @@
         <div class="neon-line"></div>
     </section>
 
+    <div class="anuncio-ia">
+        <span class="pulso"></span>
+        <div class="texto">
+            🎯 Vem aí o <strong>Time de TI</strong> — seu novo canal de suporte prático, direto e automatizado.
+        </div>
+      </div>
+
+    
+
     <section id="mensagem">
         <h2>O que você busca hoje?</h2>
     </section>
@@ -48,7 +58,7 @@
         <button class="btn" onclick="primeiraConfig()">Primeira Configuração</button>
         <button class="btn" onclick="acessarManual()">Manual do Colaborador</button>
         <button class="btn" onclick="redefinirSenha()">Redefinir Senha</button>
-        <button class="btn" onclick="abrirModal()">Outro</button>
+        <button class="btn" onclick="abrirModal()">+Acessos</button>
     </section>
 
     <div id="meuModal" class="modal">
@@ -58,6 +68,10 @@
             <span class="fechar">&times;</span>
             <h2>Acessos Rápidos</h2>
             <ul class="app-list">
+                <li class="app-item" onclick="window.open('public/busca/index.html')">
+                    <img src="public/busca/conexao.png"busca">
+                    <span>Conecta</span>
+                </li>
                 <li class="app-item" onclick="window.open('public/pomodoro/index.html', '_blank')">
                     <img src="assets/pomodoro1.png" alt="Pomodoro">
                     <span>Pomodoro</span>
@@ -78,6 +92,7 @@
                     <img src="assets/club.png" alt="club">
                     <span>Club</span>
                 </li>
+        
                 
             </ul>
         </div>
@@ -129,6 +144,44 @@
         <div class="aurora-efeito"></div>
 
     </section>
+
+    <div class="chat-widget">
+        <button id="chat-toggle" class="chat-toggle">
+        </button>
+      
+        <div class="chat-box" id="chat-box">
+          <div class="chat-header">
+            <div class="chat-title">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="10" />
+                <path d="M12 8v4l3 3" />
+              </svg>
+              <span>Assistente TI</span>
+            </div>
+            <button id="chat-close" class="chat-close">×</button>
+          </div>
+          <div class="chat-body" id="chat-body">
+            <div class="message bot">
+              Olá! Sou seu assistente de TI. Como posso te ajudar hoje? Digite o número correspondente à opção desejada:<br><br>
+              1️⃣ - Redefinir Senha<br>
+              2️⃣ - Em desenvolvimento <br>
+              3️⃣ - Em desenvolvimento<br>
+              4️⃣ - Outras dúvidas
+            </div>
+          </div>
+          <div class="chat-input-container">
+            <input type="text" id="chat-input" placeholder="Digite o número da opção..." />
+            <button id="chat-send">
+              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="green" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="22" y1="2" x2="11" y2="13"></line>
+                <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </div>
+      
+
 
     <script src="js/main.js"></script>
 </body>
